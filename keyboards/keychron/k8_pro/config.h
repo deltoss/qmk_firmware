@@ -16,6 +16,16 @@
 
 #pragma once
 
+#define DYNAMIC_KEYMAP_LAYER_COUNT 9
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+
+#define TAPPING_TERM 180 // TAP VS HOLD timing in milliseconds
+// Pick good defaults for enabling home row mods
+#define TAP_CODE_DELAY 5
+#define TAP_HOLD_CAPS_DELAY 0
+#define IGNORE_MOD_TAP_INTERRUPT
+#define BILATERAL_COMBINATIONS
+
 /* Turn off effects when suspended */
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
 #define LED_DISABLE_WHEN_USB_SUSPENDED
