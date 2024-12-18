@@ -20,6 +20,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+#define COMBO_TERM 40
+#define COMBO_STRICT_TIMER
+#define COMBO_ONLY_FROM_LAYER 0
+
+#define TAPPING_TERM 175 // TAP VS HOLD timing in milliseconds
+// Pick good defaults for enabling home row mods
+#define TAP_CODE_DELAY 5
+#define TAP_HOLD_CAPS_DELAY 0
+#define PERMISSIVE_HOLD
+
+// Mouse key speed and acceleration.
+#undef MOUSEKEY_DELAY
+#define MOUSEKEY_DELAY 0
+#undef MOUSEKEY_INTERVAL
+#define MOUSEKEY_INTERVAL 12
+#undef MOUSEKEY_WHEEL_DELAY
+#define MOUSEKEY_WHEEL_DELAY 0
+#undef MOUSEKEY_MAX_SPEED
+#define MOUSEKEY_MAX_SPEED 3
+#undef MOUSEKEY_TIME_TO_MAX
+#define MOUSEKEY_TIME_TO_MAX 32
+
 //#define USE_MATRIX_I2C
 
 //#define QUICK_TAP_TERM 0
