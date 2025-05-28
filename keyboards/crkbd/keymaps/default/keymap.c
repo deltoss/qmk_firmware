@@ -303,14 +303,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
        case MT_REDO:
             if (record->tap.count && record->event.pressed) {
-                SEND_STRING(SS_LSFT(SS_LCTL(SS_TAP(X_Z))));
+                SEND_STRING(SS_LCTL(SS_TAP(X_Y)));
                 return false;
             }
             break;
 
        case SREDO:
             if (record->event.pressed) {
-                SEND_STRING(SS_LCTL(SS_TAP(X_Y)));
+                SEND_STRING(SS_LSFT(SS_LCTL(SS_TAP(X_Z))));
             }
             break;
 
