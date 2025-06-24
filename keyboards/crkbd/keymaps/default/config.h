@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define QUICK_TAP_TERM_PER_KEY
 
-#define AUTO_SHIFT_TIMEOUT 160
+#define AUTO_SHIFT_TIMEOUT 175
 #define RETRO_SHIFT 300
 #define AUTO_SHIFT_REPEAT
 #define NO_AUTO_SHIFT_NUMERIC
