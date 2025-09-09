@@ -626,7 +626,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NAVIGATIONS_LAYER] = LAYOUT_split_3x6_3_ex2(
   //,--------------------------------------------------------------,              ,-------------------------------------------------------------.
-      _______,   SREDO, _______,    SELA,  RENAME, _______, KC_VOLU,                KC_MPLY,  MNMIZE, KC_WH_L, KC_PGDN, KC_PGUP, KC_WH_R, KC_MPRV,
+      _______,   SREDO, _______,    SELA,  RENAME, _______, KC_VOLU,                KC_MPLY,  MNMIZE, MS_WHLL, KC_PGDN, KC_PGUP, MS_WHLR, KC_MPRV,
   //|--------+--------+--------+--------+--------+--------|--------|              |--------|--------+--------+--------+--------+--------+--------|
       _______, MT_REDO,  MT_CUT, MT_COPY, MT_PASTE, SPASTE, KC_VOLD,                KC_MSEL, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_HOME,  KC_END,
   //|--------+--------+--------+--------+--------+--------|                                |--------+--------+--------+--------+--------+--------|
@@ -678,13 +678,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [MOUSE_LAYER] = LAYOUT_split_3x6_3_ex2(
   //,--------------------------------------------------------------,              ,-------------------------------------------------------------.
-      XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX, XXXXXXX,                XXXXXXX, XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX,
+      XXXXXXX, MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR, XXXXXXX, XXXXXXX,                XXXXXXX, XXXXXXX, MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|--------|              |--------|--------+--------+--------+--------+--------+--------|
-      KC_ENT, MOD_LGUI, MT(MOD_LALT, KC_LEFT), MT(MOD_LCTL, KC_DOWN), MT(MOD_LSFT, KC_UP), KC_RGHT, KC_ENT,             KC_ENT, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, KC_ENT,
+      KC_ENT, MOD_LGUI, MT(MOD_LALT, KC_LEFT), MT(MOD_LCTL, KC_DOWN), MT(MOD_LSFT, KC_UP), KC_RGHT, KC_ENT,             KC_ENT, MS_LEFT, MS_DOWN, MS_UP, MS_RGHT, XXXXXXX, KC_ENT,
   //|--------+--------+--------+--------+--------+--------|                                |--------+--------+--------+--------+--------+--------|
-      KC_ESC, KC_TAB, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,                                  KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,  KC_TAB, KC_ESC,
+       KC_ESC,  KC_TAB, MS_LEFT, MS_DOWN,   MS_UP, MS_RGHT,                                  KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,  KC_TAB, KC_ESC,
   //|--------+--------+--------+--------+--------+--------+--------------|  |--------------+--------+--------+--------+--------+--------+--------|
-                                               KC_BTN3, KC_BTN2, KC_BTN1,    KC_BTN1, KC_BTN2, KC_BTN3
+                                               MS_BTN3, MS_BTN2, MS_BTN1,    MS_BTN1, MS_BTN2, MS_BTN3
                                       //`--------------------------------'  `--------------------------------'
   ),
 
