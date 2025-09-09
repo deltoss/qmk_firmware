@@ -43,7 +43,6 @@ enum layers{
 #define LT_WORD_DEL LT(NUMS_LAYER, WORD_DEL)
 #define LT_OSM LT(MOUSE_LAYER, KC_NO)
 #define LT_VW_TABS LT(NAVIGATIONS_LAYER, VW_TABS)
-#define QUAKE LGUI(KC_GRV)
 #define MT_REDO MT(MOD_LGUI, REDO)
 #define MT_CUT MT(MOD_LALT, CUT)
 #define MT_COPY MT(MOD_LCTL, COPY)
@@ -84,6 +83,7 @@ enum combos {
   TAB_COMBO,
   ENTER_COMBO,
   APP_COMBO,
+  OSL_FNKEYSLYR_COMBO,
   FNKEYSLYR_COMBO,
   SENT_COMBO,
   AUTOSHIFT_COMBO,
@@ -96,6 +96,7 @@ uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this
 
 const uint16_t PROGMEM ld_combo[] = {KC_L, KC_D, COMBO_END};
 const uint16_t PROGMEM oe_combo[] = {KC_O, MT(MOD_RALT, KC_E), COMBO_END};
+const uint16_t PROGMEM kpcom_combo[] = {KC_K, KC_P, KC_COMM, COMBO_END};
 const uint16_t PROGMEM kp_combo[] = {KC_K, KC_P, COMBO_END};
 const uint16_t PROGMEM pcom_combo[] = {KC_P, KC_COMM, COMBO_END};
 const uint16_t PROGMEM comdot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
@@ -108,7 +109,8 @@ combo_t key_combos[] = {
     [TAB_COMBO] = COMBO(ld_combo, KC_TAB),
     [ENTER_COMBO] = COMBO(oe_combo, KC_ENTER),
     [APP_COMBO] = COMBO(kp_combo, KC_APP),
-    [FNKEYSLYR_COMBO] = COMBO(pcom_combo, OSL(FUNCTION_KEYS_LAYER)),
+    [FNKEYSLYR_COMBO] = COMBO(kpcom_combo, TG(FUNCTION_KEYS_LAYER)),
+    [OSL_FNKEYSLYR_COMBO] = COMBO(pcom_combo, OSL(FUNCTION_KEYS_LAYER)),
     [SENT_COMBO] = COMBO(comdot_combo, QK_LEAD),
     [AUTOSHIFT_COMBO] = COMBO(insj_combo, AS_TOGG),
     [GAMELYR_COMBO] = COMBO(insscln_combo, TG(GAME_LAYER)),
@@ -532,8 +534,6 @@ void leader_end_user(void) {
         SEND_STRING(SS_LALT(SS_TAP(X_F4)));
     } else if (leader_sequence_one_key(KC_C)) {
         SEND_STRING(MAKE_COMMAND);
-    } else if (leader_sequence_one_key(KC_SLSH)) {
-        tap_code16(QUAKE);
     }
 
     // docker
@@ -670,7 +670,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|--------|              |--------|--------+--------+--------+--------+--------+--------|
       _______, _______, _______, _______, _______, _______, _______,                _______, _______,   KC_F4,   KC_F5,   KC_F6,  KC_F11,  KC_F12,
   //|--------+--------+--------+--------+--------+--------|                                |--------+--------+--------+--------+--------+--------|
-      _______, _______, _______, _______, _______, _______,                                  _______,   KC_F1,   KC_F2,   KC_F3, _______,   QUAKE,
+      _______, _______, _______, _______, _______, _______,                                  QK_LLCK,   KC_F1,   KC_F2,   KC_F3, _______, _______,
   //|--------+--------+--------+--------+--------+--------+--------------|  |--------------+--------+--------+--------+--------+--------+--------|
                                                _______, _______, _______,    _______, _______, _______
                                       //`--------------------------------'  `--------------------------------'
