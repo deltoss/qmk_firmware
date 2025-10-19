@@ -42,6 +42,7 @@ enum layers{
 #define MT_WORD_BSPC MT(MOD_HYPR, WORD_BSPC)
 #define LT_WORD_DEL LT(NUMS_LAYER, WORD_DEL)
 #define LT_OSM LT(MOUSE_LAYER, KC_NO)
+#define LT_BASE_OSS LT(BASE, OS_LSFT)
 #define LT_VW_TABS LT(NAVIGATIONS_LAYER, VW_TABS)
 #define MT_REDO MT(MOD_LGUI, REDO)
 #define MT_CUT MT(MOD_LALT, CUT)
@@ -88,6 +89,7 @@ enum combos {
   LEADER_COMBO,
   AUTOSHIFT_COMBO,
   GAMELYR_COMBO,
+  OSS_COMBO,
   RHT_MOUSELYR_COMBO,
   LFT_MOUSELYR_COMBO,
   COMBO_LENGTH
@@ -102,8 +104,9 @@ const uint16_t PROGMEM pcom_combo[] = {KC_P, KC_COMM, COMBO_END};
 const uint16_t PROGMEM comdot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM insj_combo[] = {KC_INS, KC_J, COMBO_END};
 const uint16_t PROGMEM insscln_combo[] = {KC_INS, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM rlthumbs_combo[] = {LT(NAVIGATIONS_LAYER, KC_SPC), LT(NAVIGATIONS_LAYER, KC_ENT), COMBO_END};
 const uint16_t PROGMEM rthumbs_combo[] = {LT(NAVIGATIONS_LAYER, KC_ENT), LT(SYMBOLS_LAYER, KC_DEL), LT_WORD_DEL, COMBO_END};
-const uint16_t PROGMEM lthumbs_combo[] = {MT_WORD_BSPC, MT(MOD_MEH, KC_BSPC), MT(MOD_LSFT, KC_SPC), COMBO_END};
+const uint16_t PROGMEM lthumbs_combo[] = {MT_WORD_BSPC, MT(MOD_MEH, KC_BSPC), LT(NAVIGATIONS_LAYER, KC_SPC), COMBO_END};
 
 combo_t key_combos[] = {
     [TAB_COMBO] = COMBO(ld_combo, KC_TAB),
@@ -114,6 +117,7 @@ combo_t key_combos[] = {
     [LEADER_COMBO] = COMBO(comdot_combo, QK_LEAD),
     [AUTOSHIFT_COMBO] = COMBO(insj_combo, AS_TOGG),
     [GAMELYR_COMBO] = COMBO(insscln_combo, TG(GAME_LAYER)),
+    [OSS_COMBO] = COMBO(rlthumbs_combo, OS_LSFT),
     [RHT_MOUSELYR_COMBO] = COMBO(rthumbs_combo, TG(MOUSE_LAYER)),
     [LFT_MOUSELYR_COMBO] = COMBO(lthumbs_combo, TG(MOUSE_LAYER)),
 };
@@ -247,6 +251,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 caps_word_on();
                 return false;
             }
+            break;
+
+        case LT_BASE_OSS:
+            if (record->tap.count && record->event.pressed) { // Tap
+                add_oneshot_mods(MOD_BIT(KC_LSFT));
+            } else if (record->event.pressed) { // Hold
+                register_mods(MOD_LSFT);
+                layer_clear();
+            } else { // Release
+                unregister_mods(MOD_MASK_SHIFT);
+                layer_clear();
+            }
+            return false;
             break;
 
         case LT_VW_TABS:
@@ -512,8 +529,6 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
             return 0;
         case LT_OSM:
             return QUICK_TAP_TERM / 1.5;
-        case MT(MOD_LSFT, KC_SPC):
-            return QUICK_TAP_TERM / 2;
         default:
             return QUICK_TAP_TERM;
     }
@@ -632,7 +647,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                                |--------+--------+--------+--------+--------+--------|
       _______,    UNDO, NAV_BACK, NAV_FORTH, NAV_UP, _______,                                 NAV_UP, NAV_BACK, NAV_FORTH, _______, _______, KC_MNXT,
   //|--------+--------+--------+--------+--------+--------+--------------|  |--------------+--------+--------+--------+--------+--------+--------|
-                                           MO(BASE_FN), _______, OS_LSFT,    OS_LSFT, _______, MO(BASE_FN)
+                                       MO(BASE_FN), _______, LT_BASE_OSS,    LT_BASE_OSS, _______, MO(BASE_FN)
                                       //`--------------------------------'  `--------------------------------'
   ),
 
