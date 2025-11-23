@@ -525,6 +525,8 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
 
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case MT(MOD_LSFT, KC_SPC):
+            return 0;
         case LT(MOUSE_LAYER, KC_ESC):
             return 0;
         case LT_OSM:
