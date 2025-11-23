@@ -606,9 +606,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|--------|              |--------|--------+--------+--------+--------+--------+--------|
       LT_UNDERSCORE, MT(MOD_LGUI, KC_N), MT(MOD_LALT, KC_R), MT(MOD_LCTL, KC_T), MT(MOD_LSFT, KC_S), KC_G, LT_VW_TABS,       QUIT_APP, KC_Y, MT(MOD_RSFT, KC_H), MT(MOD_RCTL, KC_A), MT(MOD_RALT, KC_E), MT(MOD_RGUI, KC_I), KC_SCLN,
   //|--------+--------+--------+--------+--------+--------|                                |--------+--------+--------+--------+--------+--------|
-      LT(MOUSE_LAYER, KC_ESC), KC_Q, KC_X, KC_M, KC_C, KC_V,                                    KC_K,    KC_P, KC_COMM,  KC_DOT, KC_SLSH,  LT_OSM,
+      LT(MOUSE_LAYER, KC_ESC), KC_Q, LT(NAVIGATIONS_LAYER, KC_X), LT(NAVIGATIONS_LAYER, KC_M), LT(NAVIGATIONS_LAYER, KC_C), KC_V,        KC_K,    KC_P, KC_COMM,  KC_DOT, KC_SLSH,  LT_OSM,
   //|--------+--------+--------+--------+--------+--------+--------------|  |--------------+--------+--------+--------+--------+--------+--------|
-       MT_WORD_BSPC, MT(MOD_MEH, KC_BSPC), LT(NAVIGATIONS_LAYER, KC_SPC),    LT(NAVIGATIONS_LAYER, KC_ENT), LT(SYMBOLS_LAYER, KC_DEL), LT_WORD_DEL
+                MT_WORD_BSPC, MT(MOD_MEH, KC_BSPC), MT(MOD_LSFT, KC_SPC),    LT(NAVIGATIONS_LAYER, KC_ENT), LT(SYMBOLS_LAYER, KC_DEL), LT_WORD_DEL
                                       //`--------------------------------'  `--------------------------------'
 
   ),
