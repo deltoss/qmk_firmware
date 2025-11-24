@@ -645,9 +645,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,--------------------------------------------------------------,              ,-------------------------------------------------------------.
       _______,   SREDO, _______,    SELA,  RENAME, _______, KC_VOLU,                KC_MPLY,  MNMIZE, MS_WHLL, KC_PGDN, KC_PGUP, MS_WHLR, KC_MPRV,
   //|--------+--------+--------+--------+--------+--------|--------|              |--------|--------+--------+--------+--------+--------+--------|
-      _______, MT_REDO,  MT_CUT, MT_COPY, MT_PASTE, SPASTE, KC_VOLD,                KC_MSEL, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_HOME,  KC_END,
+      _______, MT_REDO,  MT_CUT, MT_COPY,  NAV_UP,  NAV_UP, KC_VOLD,                KC_MSEL, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_HOME,  KC_END,
   //|--------+--------+--------+--------+--------+--------|                                |--------+--------+--------+--------+--------+--------|
-      _______,    UNDO, NAV_BACK, NAV_FORTH, NAV_UP, _______,                                 NAV_UP, NAV_BACK, NAV_FORTH, _______, _______, KC_MNXT,
+      _______,    UNDO, MT_PASTE, SPASTE, NAV_BACK, NAV_FORTH,                             NAV_UP, NAV_BACK, NAV_FORTH, _______, _______, KC_MNXT,
   //|--------+--------+--------+--------+--------+--------+--------------|  |--------------+--------+--------+--------+--------+--------+--------|
                                        MO(BASE_FN), _______, LT_BASE_OSS,    LT_BASE_OSS, _______, MO(BASE_FN)
                                       //`--------------------------------'  `--------------------------------'
