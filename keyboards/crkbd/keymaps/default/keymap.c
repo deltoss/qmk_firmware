@@ -47,7 +47,7 @@ enum layers{
 #define MT_REDO MT(MOD_LGUI, REDO)
 #define MT_CUT MT(MOD_LALT, CUT)
 #define MT_COPY MT(MOD_LCTL, COPY)
-#define MT_PASTE MT(MOD_LSFT, PASTE)
+#define MT_NAV_UP MT(MOD_LSFT, NAV_UP)
 
 enum custom_keycodes {
     WORD_BSPC = SAFE_RANGE,
@@ -301,10 +301,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
-       case MT_PASTE:
-            if (record->tap.count && record->event.pressed) {
+       case PASTE:
+            if (record->event.pressed) {
                 SEND_STRING(SS_LCTL(SS_TAP(X_V)));
-                return false;
             }
             break;
 
@@ -320,35 +319,42 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
-       case MT_REDO:
+        case MT_REDO:
             if (record->tap.count && record->event.pressed) {
                 SEND_STRING(SS_LCTL(SS_TAP(X_Y)));
                 return false;
             }
             break;
 
-       case SREDO:
+        case SREDO:
             if (record->event.pressed) {
                 SEND_STRING(SS_LSFT(SS_LCTL(SS_TAP(X_Z))));
             }
             break;
 
-       case SELA:
+        case SELA:
             if (record->event.pressed) {
                 SEND_STRING(SS_LCTL(SS_TAP(X_A)));
             }
             break;
 
-       case RENAME:
+        case RENAME:
             if (record->event.pressed) {
                 SEND_STRING(SS_TAP(X_F2));
             }
             break;
 
-       case MNMIZE:
+        case MNMIZE:
             if (record->event.pressed) {
                 SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
                 SEND_STRING(SS_TAP(X_N));
+            }
+            break;
+
+        case MT_NAV_UP:
+            if (record->tap.count && record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_UP)));
+                return false;
             }
             break;
     }
@@ -457,21 +463,21 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
                 SEND_STRING(SS_LCTL(SS_TAP(X_TAB)));
             }
             break;
-       case NAV_BACK:
+        case NAV_BACK:
             if (shifted) {
                 tap_code(MS_BTN4);
             } else {
                 SEND_STRING(SS_LALT(SS_TAP(X_LEFT)));
             }
             break;
-       case NAV_FORTH:
+        case NAV_FORTH:
             if (shifted) {
                 tap_code(MS_BTN5);
             } else {
                 SEND_STRING(SS_LALT(SS_TAP(X_RGHT)));
             }
             break;
-       case NAV_UP:
+        case NAV_UP:
             SEND_STRING(SS_LALT(SS_TAP(X_UP)));
             break;
         default:
@@ -645,9 +651,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,--------------------------------------------------------------,              ,-------------------------------------------------------------.
       _______,   SREDO, _______,    SELA,  RENAME, _______, KC_VOLU,                KC_MPLY,  MNMIZE, MS_WHLL, KC_PGDN, KC_PGUP, MS_WHLR, KC_MPRV,
   //|--------+--------+--------+--------+--------+--------|--------|              |--------|--------+--------+--------+--------+--------+--------|
-      _______, MT_REDO,  MT_CUT, MT_COPY,  NAV_UP,  NAV_UP, KC_VOLD,                KC_MSEL, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_HOME,  KC_END,
+      _______, MT_REDO,  MT_CUT, MT_COPY, MT_NAV_UP, NAV_UP, KC_VOLD,               KC_MSEL, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_HOME,  KC_END,
   //|--------+--------+--------+--------+--------+--------|                                |--------+--------+--------+--------+--------+--------|
-      _______,    UNDO, MT_PASTE, SPASTE, NAV_BACK, NAV_FORTH,                             NAV_UP, NAV_BACK, NAV_FORTH, _______, _______, KC_MNXT,
+      _______,    UNDO, SPASTE, PASTE, NAV_BACK, NAV_FORTH,                             NAV_UP, NAV_BACK, NAV_FORTH, _______, _______, KC_MNXT,
   //|--------+--------+--------+--------+--------+--------+--------------|  |--------------+--------+--------+--------+--------+--------+--------|
                                        MO(BASE_FN), _______, LT_BASE_OSS,    LT_BASE_OSS, _______, MO(BASE_FN)
                                       //`--------------------------------'  `--------------------------------'
