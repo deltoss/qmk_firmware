@@ -45,8 +45,8 @@ enum layers{
 #define LT_BASE_OSS LT(BASE, OS_LSFT)
 #define LT_VW_TABS LT(NAVIGATIONS_LAYER, VW_TABS)
 #define MT_REDO MT(MOD_LGUI, REDO)
-#define MT_CUT MT(MOD_LALT, CUT)
-#define MT_COPY MT(MOD_LCTL, COPY)
+#define MT_SPASTE MT(MOD_LALT, SPASTE)
+#define MT_PASTE MT(MOD_LCTL, PASTE)
 #define MT_NAV_UP MT(MOD_LSFT, NAV_UP)
 
 enum custom_keycodes {
@@ -287,29 +287,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
-       case MT_CUT:
-            if (record->tap.count && record->event.pressed) {
+       case CUT:
+            if (record->event.pressed) {
                 SEND_STRING(SS_LCTL(SS_TAP(X_X)));
-                return false;
             }
             break;
 
-       case MT_COPY:
-            if (record->tap.count && record->event.pressed) {
+       case COPY:
+            if (record->event.pressed) {
                 SEND_STRING(SS_LCTL(SS_TAP(X_C)));
+            }
+            break;
+
+       case MT_PASTE:
+            if (record->tap.count && record->event.pressed) {
+                SEND_STRING(SS_LCTL(SS_TAP(X_V)));
                 return false;
             }
             break;
 
-       case PASTE:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LCTL(SS_TAP(X_V)));
-            }
-            break;
-
-       case SPASTE:
-            if (record->event.pressed) {
+       case MT_SPASTE:
+            if (record->tap.count && record->event.pressed) {
                 SEND_STRING(SS_LALT(SS_LCTL(SS_TAP(X_V))));
+                return false;
             }
             break;
 
@@ -651,9 +651,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,--------------------------------------------------------------,              ,-------------------------------------------------------------.
       _______,   SREDO, _______,    SELA,  RENAME, _______, KC_VOLU,                KC_MPLY,  MNMIZE, MS_WHLL, KC_PGDN, KC_PGUP, MS_WHLR, KC_MPRV,
   //|--------+--------+--------+--------+--------+--------|--------|              |--------|--------+--------+--------+--------+--------+--------|
-      _______, MT_REDO,  MT_CUT, MT_COPY, MT_NAV_UP, NAV_UP, KC_VOLD,               KC_MSEL, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_HOME,  KC_END,
+      _______, MT_REDO, MT_SPASTE, MT_PASTE, MT_NAV_UP, NAV_UP, KC_VOLD,            KC_MSEL, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_HOME,  KC_END,
   //|--------+--------+--------+--------+--------+--------|                                |--------+--------+--------+--------+--------+--------|
-      _______,    UNDO, SPASTE, PASTE, NAV_BACK, NAV_FORTH,                             NAV_UP, NAV_BACK, NAV_FORTH, _______, _______, KC_MNXT,
+      _______,    UNDO,     CUT,    COPY, NAV_BACK, NAV_FORTH,                                NAV_UP, NAV_BACK, NAV_FORTH, _______, _______, KC_MNXT,
   //|--------+--------+--------+--------+--------+--------+--------------|  |--------------+--------+--------+--------+--------+--------+--------|
                                        MO(BASE_FN), _______, LT_BASE_OSS,    LT_BASE_OSS, _______, MO(BASE_FN)
                                       //`--------------------------------'  `--------------------------------'
