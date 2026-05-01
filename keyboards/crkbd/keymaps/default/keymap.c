@@ -561,36 +561,6 @@ void leader_end_user(void) {
     } else if (leader_sequence_one_key(KC_C)) {
         SEND_STRING(MAKE_COMMAND);
     }
-
-    // docker
-    if (leader_sequence_two_keys(KC_D, KC_P)) {
-        SEND_STRING("docker ps -a");
-    } else if (leader_sequence_two_keys(KC_D, KC_L)) {
-        SEND_STRING("docker logs [ContainerNameOrId]");
-    } else if (leader_sequence_two_keys(KC_D, KC_T)) {
-        SEND_STRING("docker exec -it [ContainerNameOrId] sh");
-    } else if (leader_sequence_two_keys(KC_D, KC_E)) {
-        SEND_STRING("docker exec [ContainerNameOrId] env");
-    } else if (leader_sequence_two_keys(KC_D, KC_S)) {
-        SEND_STRING("docker stop $(docker ps -a -q)");
-    } else if (leader_sequence_two_keys(KC_D, KC_R)) {
-        SEND_STRING("docker rmi --force $(docker images -a -q)");
-    }
-
-    // docker-compose
-    if (leader_sequence_three_keys(KC_D, KC_C, KC_P)) {
-        SEND_STRING("docker-compose ps");
-    } else if (leader_sequence_three_keys(KC_D, KC_C, KC_L)) {
-        SEND_STRING("docker-compose logs");
-    } else if (leader_sequence_three_keys(KC_D, KC_C, KC_T)) {
-        SEND_STRING("docker-compose exec [ServiceName] sh");
-    } else if (leader_sequence_three_keys(KC_D, KC_C, KC_E)) {
-        SEND_STRING("docker-compose exec [ServiceName] env");
-    } else if (leader_sequence_three_keys(KC_D, KC_C, KC_D)) {
-        SEND_STRING("docker-compose down");
-    } else if (leader_sequence_three_keys(KC_D, KC_C, KC_D)) {
-        SEND_STRING("docker-compose down --volumes --rmi all");
-    }
 }
 
 // ~0 as layer means to activate on all layers
