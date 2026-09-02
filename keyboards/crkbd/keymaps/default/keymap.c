@@ -596,9 +596,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [GAME_LAYER] = LAYOUT_split_3x6_3_ex2(
   //,--------------------------------------------------------------,              ,-------------------------------------------------------------.
-      KC_LSFT,    KC_B,    KC_L,    KC_D,    KC_W,    KC_Z, KC_LCTL,                   KC_2, KC_QUOT,    KC_F,    KC_O,    KC_U,    KC_J,  KC_INS,
+      KC_LSFT,    KC_B,    KC_L,    KC_D,    KC_W,    KC_Z, KC_LCTL,          LSFT(KC_TAB), KC_QUOT,    KC_F,    KC_O,    KC_U,    KC_J,  KC_INS,
   //|--------+--------+--------+--------+--------+--------|--------|              |--------|--------+--------+--------+--------+--------+--------|
-      KC_MINS,    KC_N,    KC_R,    KC_T,    KC_S,    KC_G, KC_LALT,                   KC_3,    KC_Y,    KC_H,    KC_A,    KC_E,    KC_I, KC_SCLN,
+      KC_MINS,    KC_N,    KC_R,    KC_T,    KC_S,    KC_G, KC_LALT,         LGUI(KC_SLSH),    KC_Y,    KC_H,    KC_A,    KC_E,    KC_I, KC_SCLN,
   //|--------+--------+--------+--------+--------+--------|                                |--------+--------+--------+--------+--------+--------|
        KC_ESC,    KC_Q,    KC_X,    KC_M,    KC_C,    KC_V,                                     KC_K,    KC_P, KC_COMM,  KC_DOT, KC_SLSH, _______,
   //|--------+--------+--------+--------+--------+--------+--------------|  |--------------+--------+--------+--------+--------+--------+--------|
