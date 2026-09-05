@@ -43,6 +43,9 @@ enum layers{
 #define LT_WORD_DEL LT(NUMS_LAYER, WORD_DEL)
 #define LT_OSM LT(MOUSE_LAYER, KC_NO)
 #define LT_BASE_OSS LT(BASE, OS_LSFT)
+#define QUAKE LGUI(KC_SLSH)
+#define STEAM_OVERLAY S(KC_TAB)
+#define AI_ASSISTANT LGUI(KC_A)
 #define MT_REDO MT(MOD_LGUI, REDO)
 #define MT_SPASTE MT(MOD_LALT, SPASTE)
 #define MT_PASTE MT(MOD_LCTL, PASTE)
@@ -540,9 +543,9 @@ const key_override_t *key_overrides[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_split_3x6_3_ex2(
   //,--------------------------------------------------------------,              ,-------------------------------------------------------------.
-      KC_PSCR,    KC_B,    KC_L,    KC_D,    KC_W,    KC_Z, KC_F21,                   KC_F23, KC_QUOT,    KC_F,    KC_O,    KC_U,    KC_J,  KC_INS,
+      KC_PSCR,    KC_B,    KC_L,    KC_D,    KC_W,    KC_Z, KC_NO,                   STEAM_OVERLAY, KC_QUOT,    KC_F,    KC_O,    KC_U,    KC_J,  KC_INS,
   //|--------+--------+--------+--------+--------+--------|--------|              |--------|--------+--------+--------+--------+--------+--------|
-      LT_UNDERSCORE, MT(MOD_LGUI, KC_N), MT(MOD_LALT, KC_R), MT(MOD_LCTL, KC_T), MT(MOD_LSFT, KC_S), KC_G, KC_F22,                   KC_F24, KC_Y, MT(MOD_RSFT, KC_H), MT(MOD_RCTL, KC_A), MT(MOD_RALT, KC_E), MT(MOD_RGUI, KC_I), KC_SCLN,
+      LT_UNDERSCORE, MT(MOD_LGUI, KC_N), MT(MOD_LALT, KC_R), MT(MOD_LCTL, KC_T), MT(MOD_LSFT, KC_S), KC_G, AI_ASSISTANT,                   QUAKE, KC_Y, MT(MOD_RSFT, KC_H), MT(MOD_RCTL, KC_A), MT(MOD_RALT, KC_E), MT(MOD_RGUI, KC_I), KC_SCLN,
   //|--------+--------+--------+--------+--------+--------|                                |--------+--------+--------+--------+--------+--------|
       LT(MOUSE_LAYER, KC_ESC), KC_Q, KC_X, LT(NAVIGATIONS_LAYER, KC_M), LT(NAVIGATIONS_LAYER, KC_C), KC_V,        KC_K,    KC_P, KC_COMM,  KC_DOT, KC_SLSH,  LT_OSM,
   //|--------+--------+--------+--------+--------+--------+--------------|  |--------------+--------+--------+--------+--------+--------+--------|
