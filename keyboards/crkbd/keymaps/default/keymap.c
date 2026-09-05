@@ -43,7 +43,6 @@ enum layers{
 #define LT_WORD_DEL LT(NUMS_LAYER, WORD_DEL)
 #define LT_OSM LT(MOUSE_LAYER, KC_NO)
 #define LT_BASE_OSS LT(BASE, OS_LSFT)
-#define LT_VW_TABS LT(NAVIGATIONS_LAYER, VW_TABS)
 #define MT_REDO MT(MOD_LGUI, REDO)
 #define MT_SPASTE MT(MOD_LALT, SPASTE)
 #define MT_PASTE MT(MOD_LCTL, PASTE)
@@ -60,10 +59,6 @@ enum custom_keycodes {
     CLN,
     UNDERSCORE,
     OSM_SHIFT,
-    QUIT_TAB,
-    QUIT_APP,
-    VW_TABS,
-    SWITCH_TAB,
     CUT,
     COPY,
     PASTE,
@@ -266,20 +261,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             break;
 
-        case LT_VW_TABS:
-            if (record->tap.count && record->event.pressed) {
-                SEND_STRING(SS_LCTL(SS_LALT(SS_TAP(X_TAB))));
-                return false;
-            } else if (record->event.pressed) {
-                SEND_STRING(SS_LCTL(SS_LALT(SS_TAP(X_TAB))));
-                layer_on(NAVIGATIONS_LAYER);
-                return false;
-            } else if (layer_state_is(NAVIGATIONS_LAYER)) {
-                layer_off(NAVIGATIONS_LAYER);
-                SEND_STRING(SS_TAP(X_ENTER));
-            }
-            break;
-
         case ARW_RHT:
             if (record->event.pressed) {
                 // To avoid issues like cursor moving, ensure numlock is ON before executing this macro.
@@ -431,9 +412,6 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
         case MT(MOD_RCTL, KC_A):
         case MT(MOD_RALT, KC_E):
         case MT(MOD_RGUI, KC_I):
-        case QUIT_TAB:
-        case QUIT_APP:
-        case SWITCH_TAB:
         case NAV_BACK:
         case NAV_FORTH:
         case NAV_UP:
@@ -445,27 +423,6 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
 
 void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
     switch(keycode) {
-        case QUIT_TAB:
-            if (shifted) {
-                SEND_STRING(SS_LCTL(SS_TAP(X_W)));
-            } else {
-                SEND_STRING(SS_LCTL(SS_TAP(X_F4)));
-            }
-            break;
-        case QUIT_APP:
-            if (shifted) {
-                SEND_STRING(SS_LCTL(SS_LSFT(SS_TAP(X_W))));
-            } else {
-                SEND_STRING(SS_LALT(SS_TAP(X_F4)));
-            }
-            break;
-        case SWITCH_TAB:
-            if (shifted) {
-                SEND_STRING(SS_LCTL(SS_LSFT(SS_TAP(X_TAB))));
-            } else {
-                SEND_STRING(SS_LCTL(SS_TAP(X_TAB)));
-            }
-            break;
         case NAV_BACK:
             if (shifted) {
                 tap_code(MS_BTN4);
@@ -583,9 +540,9 @@ const key_override_t *key_overrides[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_split_3x6_3_ex2(
   //,--------------------------------------------------------------,              ,-------------------------------------------------------------.
-      KC_PSCR,    KC_B,    KC_L,    KC_D,    KC_W,    KC_Z, SWITCH_TAB,            QUIT_TAB, KC_QUOT,    KC_F,    KC_O,    KC_U,    KC_J,  KC_INS,
+      KC_PSCR,    KC_B,    KC_L,    KC_D,    KC_W,    KC_Z, KC_F21,                   KC_F23, KC_QUOT,    KC_F,    KC_O,    KC_U,    KC_J,  KC_INS,
   //|--------+--------+--------+--------+--------+--------|--------|              |--------|--------+--------+--------+--------+--------+--------|
-      LT_UNDERSCORE, MT(MOD_LGUI, KC_N), MT(MOD_LALT, KC_R), MT(MOD_LCTL, KC_T), MT(MOD_LSFT, KC_S), KC_G, LT_VW_TABS,       QUIT_APP, KC_Y, MT(MOD_RSFT, KC_H), MT(MOD_RCTL, KC_A), MT(MOD_RALT, KC_E), MT(MOD_RGUI, KC_I), KC_SCLN,
+      LT_UNDERSCORE, MT(MOD_LGUI, KC_N), MT(MOD_LALT, KC_R), MT(MOD_LCTL, KC_T), MT(MOD_LSFT, KC_S), KC_G, KC_F22,                   KC_F24, KC_Y, MT(MOD_RSFT, KC_H), MT(MOD_RCTL, KC_A), MT(MOD_RALT, KC_E), MT(MOD_RGUI, KC_I), KC_SCLN,
   //|--------+--------+--------+--------+--------+--------|                                |--------+--------+--------+--------+--------+--------|
       LT(MOUSE_LAYER, KC_ESC), KC_Q, KC_X, LT(NAVIGATIONS_LAYER, KC_M), LT(NAVIGATIONS_LAYER, KC_C), KC_V,        KC_K,    KC_P, KC_COMM,  KC_DOT, KC_SLSH,  LT_OSM,
   //|--------+--------+--------+--------+--------+--------+--------------|  |--------------+--------+--------+--------+--------+--------+--------|
@@ -596,9 +553,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [GAME_LAYER] = LAYOUT_split_3x6_3_ex2(
   //,--------------------------------------------------------------,              ,-------------------------------------------------------------.
-      KC_LSFT,    KC_B,    KC_L,    KC_D,    KC_W,    KC_Z, KC_LCTL,          LSFT(KC_TAB), KC_QUOT,    KC_F,    KC_O,    KC_U,    KC_J,  KC_INS,
+      KC_LSFT,    KC_B,    KC_L,    KC_D,    KC_W,    KC_Z, KC_F21,                   KC_F23, KC_QUOT,    KC_F,    KC_O,    KC_U,    KC_J,  KC_INS,
   //|--------+--------+--------+--------+--------+--------|--------|              |--------|--------+--------+--------+--------+--------+--------|
-      KC_MINS,    KC_N,    KC_R,    KC_T,    KC_S,    KC_G, KC_LALT,         LGUI(KC_SLSH),    KC_Y,    KC_H,    KC_A,    KC_E,    KC_I, KC_SCLN,
+      KC_MINS,    KC_N,    KC_R,    KC_T,    KC_S,    KC_G, KC_F22,                   KC_F24,    KC_Y,    KC_H,    KC_A,    KC_E,    KC_I, KC_SCLN,
   //|--------+--------+--------+--------+--------+--------|                                |--------+--------+--------+--------+--------+--------|
        KC_ESC,    KC_Q,    KC_X,    KC_M,    KC_C,    KC_V,                                     KC_K,    KC_P, KC_COMM,  KC_DOT, KC_SLSH, _______,
   //|--------+--------+--------+--------+--------+--------+--------------|  |--------------+--------+--------+--------+--------+--------+--------|
